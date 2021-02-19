@@ -1,0 +1,7 @@
+type Budget {
+    id: Int
+    title: String
+    description: String
+    author: Usuario
+    serviceOrder: ServiceOrder
+}

@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  password String
+  isTech Boolean
+  budgets Budget[]
+}
+
+model ServiceOrder {
+  id Int @id @default(autoincrement())
+  brand String?
+  model String?
+  defect String
+  isAuthorized Boolean
+  isReady Boolean
+  wasClosed Boolean
+  valueService Float?
+  valueMaterial Float? 
+  client Int
+  clientOrder Client @relation(fields: [client], references: [id])
+  services Services[]
+  type Type
+  pictures Picture[]
+}
+
+model Client {
+  id Int @id @default(autoincrement())
+  name String
+  phone Phone[]
+  email String?
+  address String?
+  serviceOrder ServiceOrder[]
+}
+model Phone {
+  id Int @id @default(autoincrement())
+  phone String
+  isWhats Boolean
+  clientId Int
+  client Client @relation(fields: [clientId], references:[id])
+}
+
+model Services {
+  id Int @id @default(autoincrement())
+  title String
+  value Float
+  servicesOrders ServiceOrder[]
+}
+
+model Type {
+  id Int @id @default(autoincrement())
+  type String
+  description String
+}
+
+model Picture {
+  id Int @id @default(autoincrement())
+  url String
+  refer Int
+  local ServiceOrder @relation(fields: [refer], references: [id])
+}
+
+model Budget {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  authorId Int
+  serviceOrder Int
+  Order ServiceOrder @relation(fields: [serviceOrder], references: [id])
+  author User @relation(fields: [authorId], references: [id])
+}

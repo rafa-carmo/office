@@ -1,0 +1,11 @@
+type Usuario {
+    id: Int!
+    name: String
+    email: String
+    isTech: Boolean
+}
+
+input UsuarioFiltro {
+    id: Int
+    email: String
+}

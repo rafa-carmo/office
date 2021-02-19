@@ -1,0 +1,20 @@
+type ServiceOrder {
+    id: Int
+    brand: String
+    model: String
+    defect: String
+    valueService: Float
+    valueMaterial: Float
+    isAuthorized: Boolean
+    isReady: Boolean
+    wasClosed: Boolean
+    services: [Service]
+    type: Type
+    pictures: [Picture]
+    budget: [Budget]
+
+}
+
+input ServiceId {
+    id: Int!
+}

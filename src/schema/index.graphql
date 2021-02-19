@@ -1,0 +1,17 @@
+#import Usuario from "usuario.graphql"
+#import ServiceOrder from "serviceOrder.graphql"
+#import Budget from "budget.graphql"
+#import Service from "service.graphql"
+#import Type from "type.graphql"
+#import Picture from "pictures.graphql"
+#import Client from "client.graphql"
+
+type Query {
+    usuarios: [Usuario]
+    usuario(data: UsuarioFiltro): Usuario
+    budgets: [Budget]
+    serviceOrder: [ServiceOrder]
+    serviceOrderFilter(data: ServiceId): ServiceOrder
+    services: [Service]
+    clients: [Client]
+}

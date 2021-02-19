@@ -1,0 +1,13 @@
+type Client {
+    id: Int
+    name: String
+    phone: [Phone]
+    email: String
+    address: String
+    serviceOrder: [ServiceOrder]
+}
+
+type Phone {
+    phone: String
+    isWhats: Boolean
+}

@@ -1,0 +1,5 @@
+type Type {
+    id: Int
+    type: String
+    description: String
+}
