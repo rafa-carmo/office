@@ -11,3 +11,8 @@ type Phone {
     phone: String
     isWhats: Boolean
 }
+
+input searchClient {
+    name: String
+    phone: String
+}

@@ -74,5 +74,46 @@ module.exports = {
             }
         })
         return allClients
+    },
+
+    async client(_, {data}) {
+        if(!data) return null
+        const {name, phone} = data
+        if(name) {
+            const client = await prisma.client.findMany({
+                where: {
+                    name: {
+                        contains: name
+                    }
+                }
+            })
+            return client[0]
+        } else if(phone) {
+
+
+
+            const searchPhone = await prisma.phone.findMany({
+                where: {
+                    phone: { 
+                        contains: phone
+                       }
+                }
+            })
+
+
+            const client = await prisma.client.findUnique({
+                where: {
+                    id: searchPhone[0].clientId
+                },
+                include:{
+                    phone: true
+                }
+            })
+        
+            return client
+        }else{
+            return null
+        }
+        
     }
 }
