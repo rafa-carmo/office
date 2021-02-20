@@ -1,12 +1,10 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
 
 
 module.exports = {
 
-        async author(user) {
+        async author(user,args,context) {
             
-            const author = await prisma.user.findUnique({
+            const author = await context.prisma.user.findUnique({
                 where: {
                     id: user.authorId
                 }
@@ -15,8 +13,8 @@ module.exports = {
             return author
         
     },
-    async serviceOrder(service) {
-        const serviceOrder = await prisma.serviceOrder.findUnique({
+    async serviceOrder(service,args,context) {
+        const serviceOrder = await context.prisma.serviceOrder.findUnique({
             where: {
                 id: service.serviceOrder
             }

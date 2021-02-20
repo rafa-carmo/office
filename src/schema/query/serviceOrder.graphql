@@ -8,8 +8,10 @@ type ServiceOrder {
     isAuthorized: Boolean
     isReady: Boolean
     wasClosed: Boolean
+    date: DateTime
     services: [Service]
     type: Type
+    client: Client
     pictures: [Picture]
     budget: [Budget]
 

@@ -1,15 +1,8 @@
-const Query = require('./Query')
-const Budget = require('./budget')
-const Client = require('./client')
-const ServiceOrder = require('./serviceOrder')
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
-
+const Query = require('./query')
+const Mutation = require('./mutations')
 
 
 module.exports = {
-    Query,
-    Budget,
-    ServiceOrder,
-    Client
+    ...Query,
+    Mutation
 }

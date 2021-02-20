@@ -2,4 +2,5 @@ type Service {
     id: Int
     title: String
     value: Float
+    createdAt: DateTime
 }

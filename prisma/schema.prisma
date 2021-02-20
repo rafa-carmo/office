@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_Postgres")
 }
 
 model User {
@@ -13,11 +13,14 @@ model User {
   name  String?
   password String
   isTech Boolean
+  isAdmin Boolean
+  createdAt DateTime @default(now())
   budgets Budget[]
 }
 
 model ServiceOrder {
   id Int @id @default(autoincrement())
+  order String @unique
   brand String?
   model String?
   defect String
@@ -27,8 +30,13 @@ model ServiceOrder {
   valueService Float?
   valueMaterial Float? 
   client Int
+  tech Int
+  createdAt DateTime @default(now())
+  closedAt DateTime?
   clientOrder Client @relation(fields: [client], references: [id])
+  techId User @relation(fields: [tech], references: [id])
   services Services[]
+  products Product[]
   type Type
   pictures Picture[]
 }
@@ -39,6 +47,7 @@ model Client {
   phone Phone[]
   email String?
   address String?
+  createdAt DateTime @default(now())
   serviceOrder ServiceOrder[]
 }
 model Phone {
@@ -53,7 +62,17 @@ model Services {
   id Int @id @default(autoincrement())
   title String
   value Float
+  createdAt DateTime @default(now())
   servicesOrders ServiceOrder[]
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  value String
+  servicesOrders ServiceOrder[]
+  createdAt DateTime @default(now())
+
 }
 
 model Type {
@@ -75,6 +94,7 @@ model Budget {
   description String
   authorId Int
   serviceOrder Int
+  createdAt DateTime @default(now())
   Order ServiceOrder @relation(fields: [serviceOrder], references: [id])
   author User @relation(fields: [authorId], references: [id])
 }

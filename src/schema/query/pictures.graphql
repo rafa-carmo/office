@@ -1,3 +1,4 @@
 type Picture {
     id: Int
+    url: String
 }

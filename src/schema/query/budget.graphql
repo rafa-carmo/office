@@ -2,6 +2,7 @@ type Budget {
     id: Int
     title: String
     description: String
-    author: Usuario
+    author: User
+    createdAt: String
     serviceOrder: ServiceOrder
 }

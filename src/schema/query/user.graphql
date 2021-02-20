@@ -1,11 +1,12 @@
-type Usuario {
+type User {
     id: Int!
     name: String
     email: String
     isTech: Boolean
+    serviceOrder: [ServiceOrder]
 }
 
-input UsuarioFiltro {
+input UserFilter {
     id: Int
     email: String
 }

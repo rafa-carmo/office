@@ -4,15 +4,16 @@ type Client {
     phone: [Phone]
     email: String
     address: String
+    date: DateTime
     serviceOrder: [ServiceOrder]
 }
 
 type Phone {
     phone: String
     isWhats: Boolean
+    client: Client
 }
 
 input searchClient {
     name: String
-    phone: String
 }

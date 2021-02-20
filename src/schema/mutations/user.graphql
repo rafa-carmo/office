@@ -1,0 +1,13 @@
+input UserCreate {
+    email: String
+    name: String!
+    password: String!
+    isTech: Boolean
+}
+
+input UserUpdate {
+    email: String
+    name: String
+    password: String
+    isTech: Boolean
+}

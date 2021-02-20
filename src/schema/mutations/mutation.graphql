@@ -1,0 +1,12 @@
+#import UserCreate from 'user.graphql'
+
+type Mutation {
+
+    newUser(
+        data: UserCreate!
+    ): User
+
+    updateUser(
+        data: UserUpdate!
+    ): User
+}

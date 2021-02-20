@@ -5,10 +5,20 @@ const {ApolloServer} = require('apollo-server')
 
 const { typeDefs, resolvers} = require('./schema.ts')
 //import { typeDefs, resolvers } from './schema'
-const { createContext } = require('./context.tsx')
+const createContext = require('./context.tsx')
 //import { createContext } from './context'
 
-const server = new ApolloServer({ typeDefs, resolvers, context: createContext })
+const context = {
+  ...createContext
+}
+
+
+
+const server = new ApolloServer({ 
+                  typeDefs: typeDefs, 
+                  resolvers, 
+                  context 
+})
 
 
 
