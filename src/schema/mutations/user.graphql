@@ -1,13 +1,19 @@
 input UserCreate {
-    email: String
+    email: String!
     name: String!
+    login: String!
+
     password: String!
+
     isTech: Boolean
 }
 
 input UserUpdate {
+    id: Int
     email: String
     name: String
+    login: String
     password: String
     isTech: Boolean
+    isAdmin: Boolean
 }

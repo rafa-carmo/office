@@ -11,9 +11,10 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  login String @unique
   password String
   isTech Boolean
-  isAdmin Boolean
+  isAdmin Boolean @default(false)
   createdAt DateTime @default(now())
   budgets Budget[]
 }

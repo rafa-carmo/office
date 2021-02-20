@@ -1,7 +1,8 @@
-
+const {getUser } = require('../common/user');
 
 module.exports = {
       async users(obj,args,context) {
+
         const allUsers = await context.prisma.user.findMany()
         return allUsers
     },
@@ -25,6 +26,67 @@ module.exports = {
         } else {
             return null
         }
+    },
+    async userLogin(_, {data}, context) {
+        if (!data) return null
+
+            const {password} = data
+
+
+            if (data.email) {
+
+                const {email } = data
+
+                let user = await context.prisma.user.findUnique({ 
+                    where: {
+                        email: email
+                    }
+                })
+                if(!user) throw new Error("Usuário/Senha Invalido")
+
+                
+                const verify = context.bcrypt.compareSync(password, user.password)
+
+
+                if(!verify) throw new Error("Usuário/Senha Invalido")
+
+                const token = getUser(user)
+
+                user = {
+                    ...token
+                }
+                return user
+
+            }   else if (data.login){
+
+                const {login } = data
+
+                let user = await context.prisma.user.findUnique({ 
+                    where: {
+                        login: login
+                    }
+                })
+                if(!user) throw new Error("Usuário/Senha Invalido")
+                
+                const verify = context.bcrypt.compareSync(password, user.password)
+
+                if(!verify) throw new Error("Usuário/Senha Invalido")
+
+                const token = getUser(user)
+
+                user = {
+                    ...token
+                }
+
+                return user
+            } else {
+                return null
+            }
+
+
+
+
+            return null
     },
         async budgets(obj,args,context) {
         const allBudget = await context.prisma.budget.findMany()
@@ -66,7 +128,7 @@ module.exports = {
             return service
     },
     async services(obj,args,context){
-        const allServices = await contjext.prisma.services.findMany()
+        const allServices = await context.prisma.services.findMany()
         
         return allServices
     },

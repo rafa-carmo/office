@@ -12,6 +12,8 @@
 type Query {
     users: [User]
     user(data: UserFilter): User
+    userLogin(data: UserLogin): LoggedUser
+    
     budgets: [Budget]
     serviceOrder: [ServiceOrder]
     serviceOrderFilter(data: ServiceId): ServiceOrder
@@ -19,4 +21,5 @@ type Query {
     clients: [Client]
     client(data: searchClient): [Client]
     phones: [Phone]
+    
 }

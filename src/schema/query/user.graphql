@@ -2,11 +2,26 @@ type User {
     id: Int!
     name: String
     email: String
+    login: String
     isTech: Boolean
+    isAdmin: Boolean
     serviceOrder: [ServiceOrder]
+}
+
+type LoggedUser {
+    id: Int!
+    auth: String!
+    iat: String
+    exp: String
 }
 
 input UserFilter {
     id: Int
     email: String
+}
+
+input UserLogin {
+    login: String
+    email: String
+    password: String!
 }
