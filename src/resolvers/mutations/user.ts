@@ -14,14 +14,25 @@ module.exports = {
         catch(e) {
             throw new Error(e)
         }
+        
         return null
     },
 
     async updateUser(_, {data}, context) {
-        
+
+        context && context.userValidate()
         if(!data) return null
+        let id = context.userLogged
+        if ( data.id && context.userLogged != data.id || data.isAdmin!=null){
+            console.log("aqui")
+            if (context.admin.isAdmin){
+                id = data.id
+            } else {
+             throw new Error("Somente Administradores podem alterar esses dados")
+            }
+            
+        }
         
-        const id = 1
 
         if(data.password) {
             const salt = bcrypt.genSaltSync()
