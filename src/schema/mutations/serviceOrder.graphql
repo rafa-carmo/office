@@ -1,0 +1,8 @@
+input createServiceOrder {
+    order: String
+    brand: String
+    model: String
+    defect: String
+    client: Client
+    
+}

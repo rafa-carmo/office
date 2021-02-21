@@ -1,5 +1,5 @@
 #import UserCreate from 'user.graphql'
-
+#import  TypeCreate from 'type.graphql' 
 type Mutation {
 
     newUser(
@@ -9,4 +9,7 @@ type Mutation {
     updateUser(
         data: UserUpdate!
     ): User
+
+    createType ( data: TypeInput) : Type
+
 }
