@@ -14,7 +14,7 @@ module.exports = {
         catch(e) {
             throw new Error(e)
         }
-        
+
         return null
     },
 
@@ -24,9 +24,11 @@ module.exports = {
         if(!data) return null
         let id = context.userLogged
         if ( data.id && context.userLogged != data.id || data.isAdmin!=null){
-            console.log("aqui")
             if (context.admin.isAdmin){
-                id = data.id
+                if (data.id) {
+                    id = data.id
+                }
+                
             } else {
              throw new Error("Somente Administradores podem alterar esses dados")
             }
@@ -49,6 +51,9 @@ module.exports = {
                 ...data
             }
         })
+
+        updateUser.date = {createdAt: updateUser.createdAt}
+
         return updateUser
     }
 }

@@ -1,10 +1,13 @@
-module.exports = async ({req}) => {
-    
+
 const { PrismaClient } = require('@prisma/client')
 const jwt = require('jwt-simple') 
 const bcrypt = require('bcrypt-nodejs')
 
 const prisma = new PrismaClient()
+
+module.exports = async ({req}) => {
+    
+
 
 
 const auth = req.headers.authorization

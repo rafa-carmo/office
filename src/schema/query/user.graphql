@@ -4,6 +4,7 @@ type User {
     email: String
     login: String
     isTech: Boolean
+    date: DateTime
     isAdmin: Boolean
     serviceOrder: [ServiceOrder]
 }

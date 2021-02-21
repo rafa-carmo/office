@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL_Postgres")
 }
 
@@ -31,11 +31,11 @@ model ServiceOrder {
   valueService Float?
   valueMaterial Float? 
   client Int
-  tech Int
+  tech Int?
   createdAt DateTime @default(now())
   closedAt DateTime?
   clientOrder Client @relation(fields: [client], references: [id])
-  techId User @relation(fields: [tech], references: [id])
+  techId User? @relation(fields: [tech], references: [id])
   services Services[]
   products Product[]
   type Type

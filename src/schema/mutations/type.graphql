@@ -1,0 +1,4 @@
+input TypeInput {
+    type: String
+    description: String
+}
